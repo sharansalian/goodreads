@@ -8,11 +8,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val booksDao: BooksDao): ViewModel() {
+class MainViewModel @Inject constructor(private val booksDao: BooksDao) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            val books = listOf<Book>(Book(id = 1, "The Wizard of Once", "Cressida Cowell"))
+            val books = listOf<Book>(
+                Book(id = 1, "The Wizard of Once", "Cressida Cowell"),
+                Book(2, "The Metamorphosis", "Franz Kafka")
+            )
             books.forEach {
                 booksDao.insert(it)
             }
