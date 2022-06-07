@@ -9,22 +9,28 @@ import io.sharan.goodreads.business.data.Book
 
 
 class BooksAdapter : RecyclerView.Adapter<BookItemViewHolder>() {
-    var books = listOf<Book>(Book(id = 1, "The Wizard of Once", "Cressida Cowell"))
+    var books = listOf<Book>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_book, parent, false) as TextView
-        return BookItemViewHolder(textView = view)
+        return Companion.from(parent)
     }
 
     override fun onBindViewHolder(holder: BookItemViewHolder, position: Int) {
-        val item = books[position]
-        holder.textView.text = item.title
+        val book = books[position]
+        holder.bind(book)
     }
 
     override fun getItemCount(): Int = books.size
+
+    companion object {
+        private fun from(parent: ViewGroup): BookItemViewHolder {
+            val layoutInflater = LayoutInflater.from(parent.context)
+            val view = layoutInflater.inflate(R.layout.item_book, parent, false)
+            return BookItemViewHolder(view)
+        }
+    }
 }
