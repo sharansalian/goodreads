@@ -1,5 +1,6 @@
 package io.sharan.goodreads.framework.books
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,6 +11,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BooksViewModel @Inject constructor(private val booksDao: BooksDao) : ViewModel() {
+
+    private val _navigateToSleepDetail = MutableLiveData<Int?>()
+    val navigateToSleepDetail
+        get() = _navigateToSleepDetail
 
     init {
         viewModelScope.launch {
@@ -24,5 +29,13 @@ class BooksViewModel @Inject constructor(private val booksDao: BooksDao) : ViewM
     }
 
     val books = booksDao.getBooks()
+
+    fun onBookClicked(id: Int) {
+        _navigateToSleepDetail.value = id
+    }
+
+    fun onBookDetailNavigated() {
+        _navigateToSleepDetail.value = null
+    }
 
 }

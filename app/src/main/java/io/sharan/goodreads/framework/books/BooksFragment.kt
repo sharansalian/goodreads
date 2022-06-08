@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import io.sharan.goodreads.R
 import io.sharan.goodreads.databinding.FragmentBooksBinding
 import io.sharan.goodreads.framework.BookListener
 import io.sharan.goodreads.framework.BooksAdapter
+import io.sharan.goodreads.framework.book_detail.BookDetailFragment
 
 @AndroidEntryPoint
 class BooksFragment : Fragment() {
 
-    val model: BooksViewModel by viewModels()
+    val booksViewModel: BooksViewModel by viewModels()
 
     lateinit var binding: FragmentBooksBinding
 
@@ -25,20 +26,30 @@ class BooksFragment : Fragment() {
     ): View {
         binding = FragmentBooksBinding.inflate(layoutInflater)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val booksAdapter = BooksAdapter(BookListener {
+        booksViewModel.navigateToSleepDetail.observe(viewLifecycleOwner) {
+            it?.let {
+                this.findNavController().navigate(
+                    BooksFragmentDirections.actionBooksFragmentToBookDetailFragment()
+                )
+                booksViewModel.onBookDetailNavigated()
+            }
+        }
 
+        val booksAdapter = BooksAdapter(BookListener {
+            booksViewModel.onBookClicked(it)
         })
 
         binding.rvBooks.apply {
             adapter = booksAdapter
         }
 
-        model.books.observe(viewLifecycleOwner) {
+        booksViewModel.books.observe(viewLifecycleOwner) {
             booksAdapter.submitList(it)
         }
     }
