@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val model : MainViewModel by viewModels()
+    private val model: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         model.books.observe(this) {
             it?.let {
-                booksAdapter.books = it
+                booksAdapter.submitList(it)
             }
         }
 

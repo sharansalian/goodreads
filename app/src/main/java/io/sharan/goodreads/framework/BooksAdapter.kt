@@ -2,35 +2,27 @@ package io.sharan.goodreads.framework
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import io.sharan.goodreads.R
+import androidx.recyclerview.widget.ListAdapter
 import io.sharan.goodreads.business.data.Book
+import io.sharan.goodreads.databinding.ItemBookBinding
 
-
-class BooksAdapter : RecyclerView.Adapter<BookItemViewHolder>() {
-    var books = listOf<Book>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+//ListAdapter keeps track of the list
+class BooksAdapter : ListAdapter<Book, BookItemViewHolder>(BookDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
-        return Companion.from(parent)
+        return from(parent)
     }
 
     override fun onBindViewHolder(holder: BookItemViewHolder, position: Int) {
-        val book = books[position]
-        holder.bind(book)
+        val book = getItem(position)
+        holder.binding.book = book
     }
-
-    override fun getItemCount(): Int = books.size
 
     companion object {
         private fun from(parent: ViewGroup): BookItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val view = layoutInflater.inflate(R.layout.item_book, parent, false)
-            return BookItemViewHolder(view)
+            val binding = ItemBookBinding.inflate(layoutInflater, parent, false)
+            return BookItemViewHolder(binding)
         }
     }
 }
