@@ -7,7 +7,8 @@ import io.sharan.goodreads.business.data.Book
 import io.sharan.goodreads.databinding.ItemBookBinding
 
 //ListAdapter keeps track of the list
-class BooksAdapter : ListAdapter<Book, BookItemViewHolder>(BookDiffUtilCallback()) {
+class BooksAdapter(private val clickListener: BookListener) :
+    ListAdapter<Book, BookItemViewHolder>(BookDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
         return from(parent)
@@ -16,6 +17,7 @@ class BooksAdapter : ListAdapter<Book, BookItemViewHolder>(BookDiffUtilCallback(
     override fun onBindViewHolder(holder: BookItemViewHolder, position: Int) {
         val book = getItem(position)
         holder.binding.book = book
+        holder.binding.clickListener = clickListener
     }
 
     companion object {
@@ -25,4 +27,8 @@ class BooksAdapter : ListAdapter<Book, BookItemViewHolder>(BookDiffUtilCallback(
             return BookItemViewHolder(binding)
         }
     }
+}
+
+class BookListener(val clickListener: (bookId: Int) -> Unit) {
+    fun onClick(book: Book) = clickListener(book.id)
 }

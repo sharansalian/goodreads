@@ -1,14 +1,15 @@
-package io.sharan.goodreads.framework
+package io.sharan.goodreads.framework.books
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.sharan.goodreads.business.data.Book
+import io.sharan.goodreads.framework.BooksDao
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val booksDao: BooksDao) : ViewModel() {
+class BooksViewModel @Inject constructor(private val booksDao: BooksDao) : ViewModel() {
 
     init {
         viewModelScope.launch {

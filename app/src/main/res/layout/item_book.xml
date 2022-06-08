@@ -8,11 +8,17 @@
         <variable
             name="book"
             type="io.sharan.goodreads.business.data.Book" />
+
+        <variable
+            name="clickListener"
+            type="io.sharan.goodreads.framework.BookListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(book)}">
 
         <ImageView
             android:id="@+id/iv_cover"
