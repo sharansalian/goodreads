@@ -45,12 +45,18 @@ class BooksFragment : Fragment() {
             booksViewModel.onBookClicked(it)
         })
 
+        /**
+         * RecyclerView doesn't know anything about your data or what type of layout each item has.
+         * The LayoutManager arranges the items on the screen,
+         * but the adapter adapts the data to be displayed and passes view holders to the RecyclerView.
+         * So you will add the code to create headers in the adapter
+         */
         binding.rvBooks.apply {
             adapter = booksAdapter
         }
 
         booksViewModel.books.observe(viewLifecycleOwner) {
-            booksAdapter.submitList(it)
+            booksAdapter.addHeaderAndSubmitList(it)
         }
     }
 

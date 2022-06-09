@@ -1,14 +1,13 @@
 package io.sharan.goodreads.framework
 
 import androidx.recyclerview.widget.DiffUtil
-import io.sharan.goodreads.business.data.Book
 
-class BookDiffUtilCallback : DiffUtil.ItemCallback<Book>() {
-    override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
+class DataItemDiffUtilCallback : DiffUtil.ItemCallback<DataItem>() {
+    override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
+    override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
        return oldItem == newItem
     }
 }
