@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import io.sharan.goodreads.framework.BooksDao
-import io.sharan.goodreads.framework.BooksDatabase
+import io.sharan.goodreads.framework.data.local.BooksDao
+import io.sharan.goodreads.framework.data.local.BooksDatabase
 import javax.inject.Singleton
 
 // Modules are use to add bindings to Hilt

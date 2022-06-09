@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.sharan.goodreads.business.data.Book
-import io.sharan.goodreads.framework.BooksDao
+import io.sharan.goodreads.framework.data.local.BooksDao
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +19,8 @@ class BooksViewModel @Inject constructor(private val booksDao: BooksDao) : ViewM
     init {
         viewModelScope.launch {
             val books = listOf<Book>(
-                Book(id = 1, "The Wizard of Once", "Cressida Cowell"),
-                Book(2, "The Metamorphosis", "Franz Kafka")
+                Book(id = 1, "The Wizard of Once", "Cressida Cowell", 1f, 1),
+                Book(2, "The Metamorphosis", "Franz Kafka", 1f, 1)
             )
             books.forEach {
                 booksDao.insert(it)

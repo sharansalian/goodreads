@@ -1,4 +1,4 @@
-package io.sharan.goodreads.framework
+package io.sharan.goodreads.framework.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -17,7 +17,9 @@ interface BooksDao {
     @Delete
     suspend fun delete(book: Book)
 
-    @Query("SELECT * from books")
+    @Query("SELECT * FROM books")
     fun getBooks(): LiveData<List<Book>>
 
+    @Query("SELECT SUM(price * amount) FROM books")
+    fun observeTotalPrice(): LiveData<Float>
 }

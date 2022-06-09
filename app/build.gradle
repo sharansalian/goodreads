@@ -38,6 +38,10 @@ android {
         viewBinding true
         dataBinding true
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -72,5 +76,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 
     implementation "androidx.fragment:fragment-ktx:1.4.1"
+
+
+    //Local
+//    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1"
+
+    // Instrumented Unit Tests
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2" //runBlockingTest
+    androidTestImplementation "com.google.truth:truth:1.0.1" //assertThat
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0" //InstantTaskExecutorRule
+
 
 }

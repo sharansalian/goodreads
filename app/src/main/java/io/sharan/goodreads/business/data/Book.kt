@@ -8,5 +8,7 @@ data class Book(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     val title: String,
-    val author: String
+    val author: String,
+    val price: Float,
+    val amount: Int
 )
