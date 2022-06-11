@@ -9,6 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.sharan.goodreads.framework.data.local.BooksDao
 import io.sharan.goodreads.framework.data.local.BooksDatabase
+import io.sharan.goodreads.framework.other.Constants
 import javax.inject.Singleton
 
 // Modules are use to add bindings to Hilt
@@ -16,7 +17,7 @@ import javax.inject.Singleton
 // such as interfaces and classes which are not in your project
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+object DatabaseModule {
 
     // We cannot constructor inject BooksDatabase as Room generates the instance
     @Provides
@@ -27,7 +28,7 @@ class DatabaseModule {
         return Room.databaseBuilder(
             context,
             BooksDatabase::class.java,
-            "book_database"
+            Constants.DATABASE_NAME
         ).fallbackToDestructiveMigration().build()
     }
 
