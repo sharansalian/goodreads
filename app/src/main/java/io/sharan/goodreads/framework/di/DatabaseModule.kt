@@ -9,7 +9,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.sharan.goodreads.framework.data.local.BooksDao
 import io.sharan.goodreads.framework.data.local.BooksDatabase
+import io.sharan.goodreads.framework.data.remote.PixabayAPI
 import io.sharan.goodreads.framework.other.Constants
+import io.sharan.goodreads.framework.repositories.BooksRepository
+import io.sharan.goodreads.framework.repositories.BooksRepositoryImpl
 import javax.inject.Singleton
 
 // Modules are use to add bindings to Hilt
@@ -34,7 +37,15 @@ object DatabaseModule {
 
     //Here, database is a transitive dependency(we also need to tell Hilt how to provide an instance of BookDatabase
     @Provides
+    @Singleton
     fun provideBooksDao(database: BooksDatabase): BooksDao {
        return database.booksDao
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideBookRepositoryImpl(dao: BooksDao, pixabayAPI: PixabayAPI) : BooksRepository {
+        return BooksRepositoryImpl(dao, pixabayAPI)
     }
 }
