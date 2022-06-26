@@ -40,8 +40,8 @@ class BooksFragmentTest {
 
         onView(withId(R.id.fab)).perform(click())
 
-      /*  verify(navController).navigate(
+        verify(navController).navigate(
             BooksFragmentDirections.actionBooksFragmentToAddBookFragment()
-        )*/
+        )
     }
 }
