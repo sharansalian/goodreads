@@ -6,6 +6,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import io.sharan.goodreads.business.data.Book
 import io.sharan.goodreads.framework.data.local.BooksDao
 import io.sharan.goodreads.framework.data.local.BooksDatabase
@@ -17,29 +19,33 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * JUnit is used for tests in JVM
  * We are in AndroidTest we need Android Environment that's why [AndroidJUnit4]
  */
 @OptIn(ExperimentalCoroutinesApi::class)
-@RunWith(AndroidJUnit4::class)
 @SmallTest
+@HiltAndroidTest
 class BookDaoTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     @get:Rule
     var instantTaskExecutor = InstantTaskExecutorRule()
 
-    private lateinit var database: BooksDatabase
+    @Inject
+    @Named("test_db")
+    lateinit var database: BooksDatabase
+
     private lateinit var dao: BooksDao
 
     @Before
     fun setup() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            BooksDatabase::class.java
-        ).allowMainThreadQueries().build()
-
+        hiltRule.inject()
         dao = database.booksDao
     }
 
@@ -82,7 +88,7 @@ class BookDaoTest {
 
         val totalPrice = dao.observeTotalPrice().getOrAwaitValue()
 
-        assertThat(totalPrice).isEqualTo( 2 * 10f + 4 * 5.5f)
+        assertThat(totalPrice).isEqualTo(2 * 10f + 4 * 5.5f)
 
     }
 }

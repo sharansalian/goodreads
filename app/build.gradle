@@ -18,7 +18,7 @@ android {
         versionName "1.0"
         buildConfigField("String", "API_KEY", API_KEY)
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "io.sharan.goodreads.HiltTestRunner"
     }
 
     buildTypes {
@@ -95,6 +95,9 @@ dependencies {
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2" //runBlockingTest
     androidTestImplementation "com.google.truth:truth:1.0.1" //assertThat
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0" //InstantTaskExecutorRule
+
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.40'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.40'
 
 
 }
