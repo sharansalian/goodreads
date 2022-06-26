@@ -8,9 +8,10 @@ import io.sharan.goodreads.framework.adapters.ImageAdapter
 import io.sharan.goodreads.framework.ui.add.AddBookFragment
 import io.sharan.goodreads.framework.ui.books.BooksFragment
 import io.sharan.goodreads.framework.ui.image.ImageFragment
+import io.sharan.goodreads.repositories.FakeBooksRepositoryAndroidTest
 import javax.inject.Inject
 
-class BookFragmentFactory @Inject constructor(
+class TestBookFragmentFactory @Inject constructor(
     private val imageAdapter: ImageAdapter,
     private val glide: RequestManager,
     private val bookAdapter: BookAdapter
@@ -20,7 +21,7 @@ class BookFragmentFactory @Inject constructor(
         return when (className) {
             ImageFragment::class.java.name -> ImageFragment(imageAdapter)
             AddBookFragment::class.java.name -> AddBookFragment(glide)
-            BooksFragment::class.java.name -> BooksFragment(bookAdapter)
+            BooksFragment::class.java.name -> BooksFragment(bookAdapter, viewModel = BooksViewModel(FakeBooksRepositoryAndroidTest()))
             else -> super.instantiate(classLoader, className)
         }
 

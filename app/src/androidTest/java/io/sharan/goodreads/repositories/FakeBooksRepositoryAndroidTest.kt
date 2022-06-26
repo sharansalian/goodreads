@@ -7,7 +7,7 @@ import io.sharan.goodreads.framework.data.remote.responses.ImageResponse
 import io.sharan.goodreads.framework.other.Resource
 import io.sharan.goodreads.framework.repositories.BooksRepository
 
-class FakeBooksRepositoryImpl : BooksRepository {
+class FakeBooksRepositoryAndroidTest : BooksRepository {
 
     private val books = mutableListOf<Book>()
 

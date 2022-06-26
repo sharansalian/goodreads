@@ -24,7 +24,7 @@ import io.sharan.goodreads.business.data.Book
 import io.sharan.goodreads.framework.ui.BookFragmentFactory
 import io.sharan.goodreads.framework.ui.BooksViewModel
 import io.sharan.goodreads.getOrAwaitValue
-import io.sharan.goodreads.repositories.FakeBooksRepositoryImpl
+import io.sharan.goodreads.repositories.FakeBooksRepositoryAndroidTest
 import javax.inject.Inject
 
 @MediumTest
@@ -75,7 +75,7 @@ class AddBookFragmentTest {
 
     @Test
     fun clickInsertIntoDb_bookInsertedIntoDb() {
-        val testViewModel = BooksViewModel(FakeBooksRepositoryImpl())
+        val testViewModel = BooksViewModel(FakeBooksRepositoryAndroidTest())
         launchFragmentInHiltContainer<AddBookFragment>(fragmentFactory = fragmentFactory) {
             booksViewModel = testViewModel
         }

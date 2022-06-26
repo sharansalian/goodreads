@@ -17,7 +17,7 @@ import io.sharan.goodreads.framework.ui.BookFragmentFactory
 import io.sharan.goodreads.framework.ui.BooksViewModel
 import io.sharan.goodreads.getOrAwaitValue
 import io.sharan.goodreads.launchFragmentInHiltContainer
-import io.sharan.goodreads.repositories.FakeBooksRepositoryImpl
+import io.sharan.goodreads.repositories.FakeBooksRepositoryAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
@@ -50,7 +50,7 @@ class ImageFragmentTest {
         val navController = mock(NavController::class.java)
         val imageUrl = "test"
 
-        val testViewModel = BooksViewModel(FakeBooksRepositoryImpl())
+        val testViewModel = BooksViewModel(FakeBooksRepositoryAndroidTest())
 
         launchFragmentInHiltContainer<ImageFragment>(fragmentFactory = fragmentFactory) {
             Navigation.setViewNavController(requireView(), navController)

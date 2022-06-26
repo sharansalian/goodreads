@@ -37,6 +37,7 @@ class AddBookFragment @Inject constructor(private val glide: RequestManager) : F
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         booksViewModel = ViewModelProvider(requireActivity())[BooksViewModel::class.java]
+        subscribeToObservers()
 
         binding.ivBookImage.setOnClickListener {
             findNavController().navigate(AddBookFragmentDirections.actionAddBookFragmentToImageFragment())
