@@ -1,10 +1,11 @@
-package io.sharan.goodreads.framework.books
+package io.sharan.goodreads.framework.ui.books
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import io.sharan.goodreads.MainCoroutineRule
 import io.sharan.goodreads.framework.other.Constants
 import io.sharan.goodreads.framework.other.Status
+import io.sharan.goodreads.framework.ui.BooksViewModel
 import io.sharan.goodreads.getOrAwaitValue
 import io.sharan.goodreads.repositories.FakeBooksRepositoryImpl
 import kotlinx.coroutines.ExperimentalCoroutinesApi

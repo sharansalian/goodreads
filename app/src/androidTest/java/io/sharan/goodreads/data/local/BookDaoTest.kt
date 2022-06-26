@@ -1,15 +1,12 @@
 package io.sharan.goodreads.data.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.sharan.goodreads.business.data.Book
-import io.sharan.goodreads.framework.books.BooksFragment
 import io.sharan.goodreads.framework.data.local.BooksDao
 import io.sharan.goodreads.framework.data.local.BooksDatabase
 import io.sharan.goodreads.getOrAwaitValue
@@ -19,7 +16,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -93,10 +89,4 @@ class BookDaoTest {
 
     }
 
-    @Test
-    fun launchFragmentInHiltContainer() {
-        io.sharan.goodreads.launchFragmentInHiltContainer<BooksFragment> {
-
-        }
-    }
 }

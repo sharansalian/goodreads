@@ -1,4 +1,4 @@
-package io.sharan.goodreads.framework.books
+package io.sharan.goodreads.framework.ui.books
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.sharan.goodreads.databinding.FragmentBooksBinding
 import io.sharan.goodreads.framework.BookListener
 import io.sharan.goodreads.framework.BooksAdapter
-import io.sharan.goodreads.framework.book_detail.BookDetailFragment
+import io.sharan.goodreads.framework.ui.BooksViewModel
 
 @AndroidEntryPoint
 class BooksFragment : Fragment() {
@@ -57,6 +57,10 @@ class BooksFragment : Fragment() {
 
         booksViewModel.books.observe(viewLifecycleOwner) {
             booksAdapter.addHeaderAndSubmitList(it)
+        }
+
+        binding.fab.setOnClickListener {
+            findNavController().navigate(BooksFragmentDirections.actionBooksFragmentToAddBookFragment())
         }
     }
 

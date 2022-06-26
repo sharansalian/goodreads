@@ -7,16 +7,33 @@
 
     <fragment
         android:id="@+id/booksFragment"
-        android:name="io.sharan.goodreads.framework.books.BooksFragment"
+        android:name="io.sharan.goodreads.framework.ui.books.BooksFragment"
         android:label="BooksFragment"
         tools:layout="@layout/fragment_books">
         <action
             android:id="@+id/action_booksFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
+        <action
+            android:id="@+id/action_booksFragment_to_addBookFragment"
+            app:destination="@id/addBookFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"
-        android:name="io.sharan.goodreads.framework.book_detail.BookDetailFragment"
+        android:name="io.sharan.goodreads.framework.ui.book_detail.BookDetailFragment"
         android:label="fragment_book_detail"
         tools:layout="@layout/fragment_book_detail" />
+    <fragment
+        android:id="@+id/addBookFragment"
+        android:name="io.sharan.goodreads.framework.ui.add.AddBookFragment"
+        android:label="fragment_add_book"
+        tools:layout="@layout/fragment_add_book">
+        <action
+            android:id="@+id/action_addBookFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="io.sharan.goodreads.framework.ui.image.ImageFragment"
+        android:label="fragment_image"
+        tools:layout="@layout/fragment_image" />
 </navigation>

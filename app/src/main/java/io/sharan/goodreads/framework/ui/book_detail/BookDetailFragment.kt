@@ -1,4 +1,4 @@
-package io.sharan.goodreads.framework.book_detail
+package io.sharan.goodreads.framework.ui.book_detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

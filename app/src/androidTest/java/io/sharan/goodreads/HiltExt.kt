@@ -17,6 +17,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
  *
  * [reified] means we can access class information at compile time of the generic type
  */
+
 @ExperimentalCoroutinesApi
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
@@ -34,21 +35,18 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
         fragmentFactory?.let {
             activity.supportFragmentManager.fragmentFactory = it
-            val fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-                Preconditions.checkNotNull(
-                    T::class.java.classLoader
-                ),
-                T::class.java.name
-            )
-
-            fragment.arguments = fragmentArgs
-
-            activity.supportFragmentManager.beginTransaction()
-                .add(android.R.id.content, fragment, "")
-                .commitNow()
-
-            (fragment as T).action()
         }
+        val fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
+            Preconditions.checkNotNull(T::class.java.classLoader),
+            T::class.java.name
+        )
+        fragment.arguments = fragmentArgs
+
+        activity.supportFragmentManager.beginTransaction()
+            .add(android.R.id.content, fragment, "")
+            .commitNow()
+
+        (fragment as T).action()
     }
 
 }

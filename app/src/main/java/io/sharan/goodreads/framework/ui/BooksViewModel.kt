@@ -1,4 +1,4 @@
-package io.sharan.goodreads.framework.books
+package io.sharan.goodreads.framework.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
