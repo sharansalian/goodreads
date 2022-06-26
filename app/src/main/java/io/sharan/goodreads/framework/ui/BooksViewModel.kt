@@ -103,18 +103,6 @@ class BooksViewModel @Inject constructor(private val repository: BooksRepository
         }
     }
 
-    init {
-        viewModelScope.launch {
-            val books = listOf<Book>(
-                Book(id = 1, "The Wizard of Once", "Cressida Cowell", 1f, 1),
-                Book(2, "The Metamorphosis", "Franz Kafka", 1f, 1)
-            )
-            books.forEach {
-                repository.insertBook(it)
-            }
-        }
-    }
-
     val books = repository.observeAllBooks()
 
     val totalPrice = repository.observeTotalPrice()

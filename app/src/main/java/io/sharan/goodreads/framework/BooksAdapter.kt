@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import io.sharan.goodreads.business.data.Book
 import io.sharan.goodreads.databinding.ItemBookBinding
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 private val ITEM_VIEW_TYPE_HEADER = 0
 private val ITEM_VIEW_TYPE_ITEM = 1
 
 //ListAdapter keeps track of the list
-class BooksAdapter(private val clickListener: BookListener) :
+class BooksAdapter @Inject constructor(private val clickListener: BookListener) :
     ListAdapter<DataItem, RecyclerView.ViewHolder>(DataItemDiffUtilCallback()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
