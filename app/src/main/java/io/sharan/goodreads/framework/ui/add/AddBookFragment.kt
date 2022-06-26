@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import io.sharan.goodreads.databinding.FragmentAddBookBinding
 import io.sharan.goodreads.framework.ui.BooksViewModel
 import io.sharan.goodreads.framework.handleBackPress
 
+@AndroidEntryPoint
 class AddBookFragment : Fragment() {
 
     val booksViewModel: BooksViewModel by viewModels()
@@ -29,7 +31,7 @@ class AddBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivShoppingImage.setOnClickListener {
+        binding.ivBookImage.setOnClickListener {
             findNavController().navigate(AddBookFragmentDirections.actionAddBookFragmentToImageFragment())
         }
 

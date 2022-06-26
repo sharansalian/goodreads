@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ivShoppingImage"
+        android:id="@+id/ivBookImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="16dp"
@@ -21,13 +21,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="Name"
-        app:layout_constraintBottom_toBottomOf="@+id/ivShoppingImage"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBookImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivShoppingImage"
+        app:layout_constraintStart_toEndOf="@+id/ivBookImage"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etShoppingItemName"
+            android:id="@+id/etbookName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textAutoComplete" />
@@ -43,10 +43,10 @@
         app:layout_constraintEnd_toStartOf="@+id/textInputLayout2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivShoppingImage">
+        app:layout_constraintTop_toBottomOf="@+id/ivBookImage">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etShoppingItemAmount"
+            android:id="@+id/etBookAmount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="number"/>
@@ -62,10 +62,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/ivShoppingImage">
+        app:layout_constraintTop_toBottomOf="@+id/ivBookImage">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etShoppingItemPrice"
+            android:id="@+id/etBookPrice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="numberDecimal" />
@@ -73,7 +73,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAddShoppingItem"
+        android:id="@+id/btnAddBookItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
