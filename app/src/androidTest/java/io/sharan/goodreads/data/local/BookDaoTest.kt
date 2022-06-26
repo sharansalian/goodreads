@@ -9,6 +9,7 @@ import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.sharan.goodreads.business.data.Book
+import io.sharan.goodreads.framework.books.BooksFragment
 import io.sharan.goodreads.framework.data.local.BooksDao
 import io.sharan.goodreads.framework.data.local.BooksDatabase
 import io.sharan.goodreads.getOrAwaitValue
@@ -90,5 +91,12 @@ class BookDaoTest {
 
         assertThat(totalPrice).isEqualTo(2 * 10f + 4 * 5.5f)
 
+    }
+
+    @Test
+    fun launchFragmentInHiltContainer() {
+        io.sharan.goodreads.launchFragmentInHiltContainer<BooksFragment> {
+
+        }
     }
 }
